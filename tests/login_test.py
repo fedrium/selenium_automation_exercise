@@ -6,7 +6,7 @@ def test_login_correct(driver):
     signup_page.to_signup_page() #go to singup page
     signup_page.signup("abc123", "test_user_67@gmail.com")
     signup_page.enter_account_information() #enter credentials
-    signup_page.enter_address()
+    signup_page.enter_address("John", "Doe", "Wayne Enterprise", "Night Street", "The Road", "United States", "Gotham", "Arkham", "11111", "0123456789")
     signup_page.signup_button_click()
     assert signup_page.wait_for_account_created().is_displayed()
     

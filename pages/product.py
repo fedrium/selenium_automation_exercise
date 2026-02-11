@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 class Product:
     PRODUCTS_BUTTON = (By.CSS_SELECTOR, "a[href='/products']")
@@ -79,3 +80,24 @@ class Search:
         )
 
         return [el.text for el in products]
+    
+class Product_quantity:
+    QUANTITY = (By.CSS_SELECTOR, "input[id='quantity']")
+    ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, ".btn.btn-default.cart")
+    VIEW_CART = (By.CSS_SELECTOR, "a[href='/view_cart']")
+
+    def __init__(self, driver):
+        self.driver = driver
+        self.wait = WebDriverWait(driver, 10)
+
+    def increase_quantity(self, amount):
+        self.driver.find_element(*self.QUANTITY).clear()
+        self.driver.find_element(*self.QUANTITY).send_keys(amount)
+
+    def add_to_cart_and_view_cart(self):
+        self.driver.find_element(*self.ADD_TO_CART_BUTTON).click()
+        time.sleep(0.5)
+        self.wait.until(
+            EC.element_to_be_clickable(self.VIEW_CART)
+        )
+        self.driver.find_element(*self.VIEW_CART).click()

@@ -79,17 +79,17 @@ class LoginPage:
     CREATE_BUTTON = (By.CSS_SELECTOR, ("button[data-qa='create-account']"))
     ACCOUNT_CREATED = (By.XPATH, ("//h2[.//b[text()= 'Account Created!']]"))
 
-    def enter_address(self):
-        self.driver.find_element(*self.FIRST_NAME).send_keys("username")
-        self.driver.find_element(*self.LAST_NAME).send_keys("test")
-        self.driver.find_element(*self.COMPANY).send_keys("test")
-        self.driver.find_element(*self.ADDRESS).send_keys("here")
-        self.driver.find_element(*self.ADDRESS2).send_keys("there")
-        Select(self.driver.find_element(*self.COUNTRY)).select_by_visible_text("Singapore")
-        self.driver.find_element(*self.STATE).send_keys("over here")
-        self.driver.find_element(*self.CITY).send_keys("city")
-        self.driver.find_element(*self.ZIPCODE).send_keys("111111")
-        self.driver.find_element(*self.MOBILE_NUMBER).send_keys("0123456789")
+    def enter_address(self, first_name, last_name, company, address, address2, country, state, city, zipcode, mobile_number):
+        self.driver.find_element(*self.FIRST_NAME).send_keys(first_name)
+        self.driver.find_element(*self.LAST_NAME).send_keys(last_name)
+        self.driver.find_element(*self.COMPANY).send_keys(company)
+        self.driver.find_element(*self.ADDRESS).send_keys(address)
+        self.driver.find_element(*self.ADDRESS2).send_keys(address2)
+        Select(self.driver.find_element(*self.COUNTRY)).select_by_visible_text(country)
+        self.driver.find_element(*self.STATE).send_keys(state)
+        self.driver.find_element(*self.CITY).send_keys(city)
+        self.driver.find_element(*self.ZIPCODE).send_keys(zipcode)
+        self.driver.find_element(*self.MOBILE_NUMBER).send_keys(mobile_number)
 
     def signup_button_click(self):
         self.driver.find_element(*self.CREATE_BUTTON).click()

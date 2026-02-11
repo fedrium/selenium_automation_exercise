@@ -11,7 +11,7 @@ def test_homepage(driver):
 
     #Keys in credentials for sign up
     signup_page.enter_account_information()
-    signup_page.enter_address()
+    signup_page.enter_address("John", "Doe", "Wayne Enterprise", "Night Street", "The Road", "United States", "Gotham", "Arkham", "11111", "0123456789")
 
     #Clicks the sign up button and Verify that 'ACCOUNT CREATED!' is visible
     signup_page.signup_button_click()
